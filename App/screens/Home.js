@@ -1,50 +1,57 @@
 import React from 'react';
-import {View, StyleSheet, SafeAreaView, Image, Dimensions, text, Alert} from 'react-native'
-import { MyButton, RegisterButton } from "../components/Button";
+import {View, StyleSheet, SafeAreaView, Image, Dimensions, text, StatusBar} from 'react-native'
+
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { font } from 'expo';
+import Constants from 'expo-constants';
+
+import { MyButton, RegisterButton } from "../components/Button";
+import colors from '../config/colors'
 
 
-const deviceWidth = Dimensions.get('screen').width
-const deviceHeight = Dimensions.get('screen').height
 
 const styles = StyleSheet.create({
+
+     mainContainer: {
+        backgroundColor: colors.darkBlue,
+        flex: 1,
+       
+       
+       
+    },
+
+     loginButton: {
+        marginLeft: wp('75%'),
+         position: 'absolute',
+       marginTop: Constants.statusBarHeight
+
+    },
    
    
    
-    buttonContainer: {
+    sendButton: {
         marginTop: hp('65%'),
-       marginHorizontal: wp('10%')
+        marginHorizontal: wp('10%'),
+        
        
          
     },
 
-    mainContainer: {
-        backgroundColor: '#36485f',
-        flex: 1,
-       
-    },
+   
 
-    buttonTwo: {
+    signupButton: {
         marginTop: hp('80%'),
         position: 'absolute',
-        marginLeft: wp('40%')
+        width: '100%',
+       alignItems: 'center'
       
         
          
 
 
     },
-    buttonOne: {
-        marginLeft: 330
-         
-    },
-    loginButton: {
-        marginLeft: wp('75%'),
-        marginTop: hp('5%'),
-        position: 'absolute'
-
-    }
+    
+   
    
         
     
@@ -53,8 +60,9 @@ const styles = StyleSheet.create({
 
 export default ({navigation}) => {
     return (
- 
+  
         <SafeAreaView style={styles.mainContainer}>
+        <StatusBar barstyle='light-content'/>
            
             <View style={styles.loginButton}>
                  <RegisterButton 
@@ -65,16 +73,16 @@ export default ({navigation}) => {
             </View>
                  
        
-           
-            <View style={styles.buttonContainer}>
+           <View style={styles.sendButton}>
                 <MyButton
                    
                     title="Quick Send"
+                    onPress={() => navigation.push('Transfer')}
                     
                     />
 
             </View>
-           <View style={styles.buttonTwo}>
+           <View style={styles.signupButton}>
                 <RegisterButton
                     title="Sign up"
                      onPress={() => navigation.push('Signup')}

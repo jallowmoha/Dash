@@ -6,13 +6,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Signup from '../screens/Signup';
 import Login from '../screens/Login';
+import Transfer from '../screens/Transfer'
 
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
-    <MainStack.Navigator headerMode= 'none' initialRouteName='Signup'>
+    <MainStack.Navigator headerMode= 'none' initialRouteName='Transfer'>
         <MainStack.Screen name='Home' component={Home} />
         <MainStack.Screen name='Signup' component={Signup} />
         <MainStack.Screen name='Login' component={Login} />
+        <MainStack.Screen name='Transfer' component={Transfer}/>
     </MainStack.Navigator>
 );
 
@@ -23,3 +25,4 @@ export default () => (
     </NavigationContainer>
 );
 
+ 
