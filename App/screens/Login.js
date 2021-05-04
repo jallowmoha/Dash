@@ -1,10 +1,11 @@
-import React from 'react';
-import { TextInput, Text, StyleSheet, View } from 'react-native';
+import React, {useState} from 'react';
+import { TextInput, Text, StyleSheet, View, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import { MaterialIcons, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { MyButton, RegisterButton } from "../components/Button";
 import { DismissKeyboard } from "../components/Dismisskeyboard";
+import { signIn } from '../api/firebaseMethods';
 
 
 
@@ -64,6 +65,24 @@ const styles = StyleSheet.create({
 
 
 export default ({navigation}) => {
+
+    const [ email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const onLoginPress = () => {
+        if (!email){
+            Alert.alert("Email is required")
+        } else if (!password) {
+            Alert.alert("Password is required")
+
+        } else {
+            signIn(
+                email,
+                password
+            );
+            navigation.navigate("Transfer")
+        }
+    }
     return (
 
         <React.Fragment>
@@ -79,6 +98,8 @@ export default ({navigation}) => {
                 placeholder='Email'
                 placeholderTextColor='#fff'
                 keyboardType= 'email-address'
+                onChangeText={(text) => setEmail(text)}
+                value={email}
                         />
              <MaterialIcons name="email" size={18} color="white" style={styles.icon}/>
             </View>
@@ -88,13 +109,14 @@ export default ({navigation}) => {
                 placeholder='Password'
                 secureTextEntry={true}
                 placeholderTextColor='#fff'
+                onChangeText={(text) => setPassword(text)}
                         />
             <MaterialCommunityIcons name="account-key" size={18} color="white" style={styles.icon}/>
              </View>
              <MyButton
                    
                 title="Sign in"
-                onPress={() => navigation.push('Home')}
+                onPress={onLoginPress}
         
                     
                     />

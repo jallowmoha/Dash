@@ -13,7 +13,7 @@ import colors from '../config/colors'
 const styles = StyleSheet.create({
 
      mainContainer: {
-        backgroundColor: colors.darkBlue,
+        backgroundColor: colors.lightBlue,
         flex: 1,
        
        
@@ -77,7 +77,7 @@ export default ({navigation}) => {
                 <MyButton
                    
                     title="Quick Send"
-                    onPress={() => navigation.push('Transfer')}
+                    onPress={() => navigation.navigate('Transfer')}
                     
                     />
 
@@ -85,7 +85,7 @@ export default ({navigation}) => {
            <View style={styles.signupButton}>
                 <RegisterButton
                     title="Sign up"
-                     onPress={() => navigation.push('Signup')}
+                     onPress={() => navigation.navigate('Signup')}
                    
                     
                 />

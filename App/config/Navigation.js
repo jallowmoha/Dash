@@ -10,7 +10,7 @@ import Transfer from '../screens/Transfer'
 
 const MainStack = createStackNavigator();
 const MainStackScreen = () => (
-    <MainStack.Navigator headerMode= 'none' initialRouteName='Transfer'>
+    <MainStack.Navigator headerMode= 'none' initialRouteName='Home'>
         <MainStack.Screen name='Home' component={Home} />
         <MainStack.Screen name='Signup' component={Signup} />
         <MainStack.Screen name='Login' component={Login} />

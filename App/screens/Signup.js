@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { TextInput, Text,  StyleSheet, View,  Platform, Dimensions } from 'react-native';
+import { TextInput, Text,  StyleSheet, View,  Platform, Dimensions, Alert } from 'react-native';
 
 import { useKeyboard } from '@react-native-community/hooks'
 import Constants from 'expo-constants';
@@ -17,6 +17,7 @@ import { MyButton } from "../components/Button";
 import { DismissKeyboard } from "../components/Dismisskeyboard";
 import colors from '../config/colors';
 import { color } from 'react-native-reanimated';
+import { registration } from '../api/firebaseMethods';
 
 
 
@@ -97,31 +98,26 @@ export default ({ navigation }) => {
     const [password, setPassword] = useState('')
 
     const onRegisterPress = () => {
-         firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((response) => {
-                const uid = response.user.uid
-                const data = {
-                    id: uid,
-                    email,
-                    firstName,
-                    lastName,
-                };
-                const usersRef = firebase.firestore().collection('users')
-                usersRef
-                    .doc(uid)
-                    .set(data)
-                    .then(() => {
-                        navigation.push('Home   ', {user: data})
-                    })
-                    .catch((error) => {
-                        alert(error)
-                    });
-            })
-            .catch((error) => {
-                alert(error)
-        });
+
+        if (!firstName) {
+            Alert.alert('First name is required');
+        } else if (!lastName) {
+            Alert.alert('Last name is required.')
+        } else if(!password) {
+            Alert.alert('Password is required')
+        } else {
+            registration(
+                email,
+                password,
+                lastName,
+                firstName
+            );
+            navigation.navigate('Transfer')
+        }
+
 
     }
+         
     
     
      
@@ -193,7 +189,7 @@ export default ({ navigation }) => {
                 <MyButton
                    
                 title="Submit"
-                onPress={() => onRegisterPress()}
+                onPress={onRegisterPress}
         
                  />
                         
