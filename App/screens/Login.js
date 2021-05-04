@@ -56,6 +56,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 20,
         justifyContent: 'center',
+    },
+
+    signUpButton: {
+        paddingBottom: 20
     }
         
 
@@ -72,16 +76,22 @@ export default ({navigation}) => {
     const onLoginPress = () => {
         if (!email){
             Alert.alert("Email is required")
-        } else if (!password) {
+        }
+        
+        if (!password) {
             Alert.alert("Password is required")
 
-        } else {
+        }  
             signIn(
                 email,
                 password
-            );
-            navigation.navigate("Transfer")
-        }
+        );
+        
+        setEmail('')
+        setPassword('')
+        
+           
+        
     }
     return (
 
@@ -112,17 +122,27 @@ export default ({navigation}) => {
                 onChangeText={(text) => setPassword(text)}
                         />
             <MaterialCommunityIcons name="account-key" size={18} color="white" style={styles.icon}/>
-             </View>
-             <MyButton
+                    </View>
+                    
+                    <View style={styles.signUpButton}>
+                           <MyButton
                    
                 title="Sign in"
                 onPress={onLoginPress}
         
                     
                     />
-                
+
                     </View>
+          
+                    <RegisterButton
+                    title="Don't have an account? Sign up"
+                    onPress={() => navigation.navigate('Signup')} 
+                />
              
+                
+                </View>
+                
             
             </DismissKeyboard>
             </React.Fragment>

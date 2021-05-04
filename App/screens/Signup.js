@@ -13,7 +13,7 @@ import { firebaseConfig, db, auth } from '../config/firebase';
 
 
 
-import { MyButton } from "../components/Button";
+import { MyButton, RegisterButton } from "../components/Button";
 import { DismissKeyboard } from "../components/Dismisskeyboard";
 import colors from '../config/colors';
 import { color } from 'react-native-reanimated';
@@ -193,7 +193,11 @@ export default ({ navigation }) => {
         
                  />
                         
-            </View>
+                    </View>
+                    <RegisterButton
+                        title='Have an account? Sign in'
+                        onPress={() => navigation.navigate('Login')}
+                />
           
               </View>
                 

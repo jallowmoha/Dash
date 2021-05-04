@@ -11,3 +11,9 @@ web-build/
 
 # macOS
 .DS_Store
+
+#api
+App/api
+
+#firebase
+App/config/firebase.js
