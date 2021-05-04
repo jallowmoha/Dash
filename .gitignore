@@ -15,5 +15,5 @@ web-build/
 #api
 App/api
 
-#firebase
+#firebase 
 App/config/firebase.js
