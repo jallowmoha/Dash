@@ -1,3 +1,3 @@
 # Dash
 
-This is an international money transfer app. This is an ongoing project.
+This is an international money transfer app. It's an ongoing project.
